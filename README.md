@@ -20,7 +20,7 @@ python -m pip install pyqt5
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/shyoo17/gui_calculator/blob/main/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://github.com/ZkPill/gui_calculator/blob/main/CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Authors
 
