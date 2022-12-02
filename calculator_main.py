@@ -28,31 +28,47 @@ class Main(QDialog):
         button_minus = QPushButton("-")
         button_product = QPushButton("x")
         button_division = QPushButton("/")
+        button_remain = QPushButton("%")
+        button_reciprocal = QPushButton("1/x")
+        button_square = QPushButton("x^2")
+        button_root = QPushButton("x^(1/2)")
 
         ### 사칙연산 버튼을 클릭했을 때, 각 사칙연산 부호가 수식창에 추가될 수 있도록 시그널 설정
         button_plus.clicked.connect(lambda state, operation = "+": self.button_operation_clicked(operation))
         button_minus.clicked.connect(lambda state, operation = "-": self.button_operation_clicked(operation))
         button_product.clicked.connect(lambda state, operation = "*": self.button_operation_clicked(operation))
         button_division.clicked.connect(lambda state, operation = "/": self.button_operation_clicked(operation))
-
+        button_remain.clicked.connect(lambda state, operation = "%": self.button_operation_clicked(operation))
+        button_reciprocal.clicked.connect(lambda state, operation = "1/x": self.button_operation1_clicked(operation)) 
+        button_square.clicked.connect(lambda state, operation = "x^2": self.button_operation1_clicked(operation))
+        button_root.clicked.connect(lambda state, operation = "x^(1/2)": self.button_operation1_clicked(operation))
         ### 사칙연산 버튼을 layout_operation 레이아웃에 추가
         layout_operation.addWidget(button_plus)
         layout_operation.addWidget(button_minus)
         layout_operation.addWidget(button_product)
         layout_operation.addWidget(button_division)
+        
+        layout_operation.addWidget(button_remain)
+        layout_operation.addWidget(button_reciprocal)
+        layout_operation.addWidget(button_square)
+        layout_operation.addWidget(button_root)
+
 
         ### =, clear, backspace 버튼 생성
         button_equal = QPushButton("=")
-        button_clear = QPushButton("Clear")
+        button_clear = QPushButton("C")
+        button_ce = QPushButton("CE")
         button_backspace = QPushButton("Backspace")
 
         ### =, clear, backspace 버튼 클릭 시 시그널 설정
         button_equal.clicked.connect(self.button_equal_clicked)
         button_clear.clicked.connect(self.button_clear_clicked)
+        button_ce.clicked.connect(self.button_clear_clicked)
         button_backspace.clicked.connect(self.button_backspace_clicked)
 
         ### =, clear, backspace 버튼을 layout_clear_equal 레이아웃에 추가
         layout_clear_equal.addWidget(button_clear)
+        layout_clear_equal.addWidget(button_ce)
         layout_clear_equal.addWidget(button_backspace)
         layout_clear_equal.addWidget(button_equal)
 
@@ -99,6 +115,24 @@ class Main(QDialog):
         equation = self.equation.text()
         equation += operation
         self.equation.setText(equation)
+
+    def button_operation1_clicked(self, operation):
+        equation = self.equation.text()
+        if operation == "1/x":
+            number = float(equation)
+            number = 1/number
+            self.equation.setText(str(number))
+
+        if operation == "x^2":
+            number = float(equation)
+            number = number * number
+            self.equation.setText(str(number))
+
+        if operation == "x^(1/2)":
+            number = float(equation)
+            number = number ** (1/2)
+            self.equation.setText(str(number))
+
 
     def button_equal_clicked(self):
         equation = self.equation.text()
