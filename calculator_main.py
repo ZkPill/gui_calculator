@@ -96,7 +96,7 @@ class Main(QDialog):
         ### 각 레이아웃을 main_layout 레이아웃에 추가
         main_layout.addLayout(layout_equation_solution)
         main_layout.addLayout(layout_all)
-        
+
         self.setLayout(main_layout)
         self.show()
 
