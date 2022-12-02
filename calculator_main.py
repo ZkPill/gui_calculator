@@ -87,9 +87,9 @@ class Main(QDialog):
             elif number==0:
                 layout_all.addWidget(number_button_dict[number], 5, 1)
 
-        ### 소숫점 버튼과 00 버튼을 입력하고 시그널 설정
+        ### 소숫점 버튼과 +/- 버튼을 입력하고 시그널 설정
         button_dot = QPushButton(".")
-        button_dot.clicked.connect(lambda state, num = ".": self.number_button_clicked(num))
+        button_dot.clicked.connect(lambda state, num = ".": self.button_dot(num))
         layout_all.addWidget(button_dot, 5, 2)
 
         button_negative = QPushButton("+/-")
@@ -127,6 +127,7 @@ class Main(QDialog):
             self.equation.setText("")
             equation = self.equation.text()
             equation += str(num)
+            self.equation.setText(equation)
         else:
             equation = self.equation.text()
             equation += str(num)
@@ -158,6 +159,16 @@ class Main(QDialog):
         num2 = self.equation.text()
         num2 = -1 * float(num2)
         self.equation.setText(str(num2))
+
+    def button_dot(self, num):
+        num2 = self.equation.text()         ## 이미 소숫점이 존재할 떄 더이상 점을 못찍게 하는 함수
+        if (num2.find('.') == -1):
+            equation = self.equation.text()
+            equation += str(num)
+            self.equation.setText(equation)
+        else :
+            return
+
     
     def button_equal_clicked(self):
         if self.test == '+':
@@ -178,7 +189,7 @@ class Main(QDialog):
             self.equation.setText(str(sum))
         if self.test == '%':
             num2 = self.equation.text()
-            sum = float(self.num1) % float(num2)
+            sum = float(self.num1) % int(num2)
             self.equation.setText(str(sum))
 
     def button_clear_clicked(self):
