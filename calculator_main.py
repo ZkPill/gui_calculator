@@ -6,6 +6,9 @@ class Main(QDialog):
         super().__init__()
         self.init_ui()
 
+        self.num1 = 0
+        self.test = ""
+
     def init_ui(self):
         main_layout = QVBoxLayout()
 
@@ -104,14 +107,35 @@ class Main(QDialog):
     ### functions ###
     #################
     def number_button_clicked(self, num):
-        equation = self.equation.text()
-        equation += str(num)
-        self.equation.setText(equation)
+        if self.equation.text() == '+':
+            self.equation.setText("")
+            equation = self.equation.text()
+            equation += str(num)
+        if self.equation.text() == '-':
+            self.equation.setText("")
+            equation = self.equation.text()
+            equation += str(num)
+        if self.equation.text() == '*':
+            self.equation.setText("")
+            equation = self.equation.text()
+            equation += str(num)
+        if self.equation.text() == '/':
+            self.equation.setText("")
+            equation = self.equation.text()
+            equation += str(num)
+        if self.equation.text() == '%':
+            self.equation.setText("")
+            equation = self.equation.text()
+            equation += str(num)
+        else:
+            equation = self.equation.text()
+            equation += str(num)
+            self.equation.setText(equation)
 
     def button_operation_clicked(self, operation):
-        equation = self.equation.text()
-        equation += operation
-        self.equation.setText(equation)
+        self.num1 = self.equation.text()
+        self.test = operation
+        self.equation.setText(self.test)
 
     def button_operation1_clicked(self, operation):
         equation = self.equation.text()
@@ -132,13 +156,30 @@ class Main(QDialog):
 
 
     def button_equal_clicked(self):
-        equation = self.equation.text()
-        solution = eval(equation)
-        self.equation.setText(str(solution))
+        if self.test == '+':
+            num2 = self.equation.text()
+            sum = float(self.num1) + float(num2)
+            self.equation.setText(str(sum))
+        if self.test == '-':
+            num2 = self.equation.text()
+            sum = float(self.num1) - float(num2)
+            self.equation.setText(str(sum))
+        if self.test == '*':
+            num2 = self.equation.text()
+            sum = float(self.num1) * float(num2)
+            self.equation.setText(str(sum))
+        if self.test == '/':
+            num2 = self.equation.text()
+            sum = float(self.num1) / float(num2)
+            self.equation.setText(str(sum))
+        if self.test == '%':
+            num2 = self.equation.text()
+            sum = float(self.num1) % float(num2)
+            self.equation.setText(str(sum))
 
     def button_clear_clicked(self):
         self.equation.setText("")
-        self.solution.setText("")
+        self.test = ""
 
     def button_backspace_clicked(self):
         equation = self.equation.text()
