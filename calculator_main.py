@@ -26,7 +26,8 @@ class Main(QDialog):
         button_minus = QPushButton("-")
         button_product = QPushButton("x")
         button_division = QPushButton("/")
-        button_remain = QPushButton("%")
+
+        button_remain = QPushButton("%")            # 이슈 #5번과 관련된 내용 ( 아래 4줄 )
         button_reciprocal = QPushButton("1/x")
         button_square = QPushButton("x^2")
         button_root = QPushButton("x^(1/2)")
@@ -36,7 +37,8 @@ class Main(QDialog):
         button_minus.clicked.connect(lambda state, operation = "-": self.button_operation_clicked(operation))
         button_product.clicked.connect(lambda state, operation = "*": self.button_operation_clicked(operation))
         button_division.clicked.connect(lambda state, operation = "/": self.button_operation_clicked(operation))
-        button_remain.clicked.connect(lambda state, operation = "%": self.button_operation_clicked(operation))
+
+        button_remain.clicked.connect(lambda state, operation = "%": self.button_operation_clicked(operation))          # 이슈 #5번과 관련된 내용 ( 아래 4줄 )
         button_reciprocal.clicked.connect(lambda state, operation = "1/x": self.button_operation1_clicked(operation)) 
         button_square.clicked.connect(lambda state, operation = "x^2": self.button_operation1_clicked(operation))
         button_root.clicked.connect(lambda state, operation = "x^(1/2)": self.button_operation1_clicked(operation))
@@ -46,10 +48,10 @@ class Main(QDialog):
         layout_all.addWidget(button_product, 2, 3)
         layout_all.addWidget(button_division, 1, 3)
         
-        layout_all.addWidget(button_remain, 0, 0)
-        layout_all.addWidget(button_reciprocal, 1, 0)
-        layout_all.addWidget(button_square, 1, 1)
-        layout_all.addWidget(button_root, 1, 2)
+        layout_all.addWidget(button_remain, 0, 0)           # 이슈 #5번과 관련된 내용 ( 아래 4줄 )
+        layout_all.addWidget(button_reciprocal, 1, 0)       
+        layout_all.addWidget(button_square, 1, 1)           
+        layout_all.addWidget(button_root, 1, 2)             
 
 
         ### =, clear, backspace 버튼 생성
@@ -96,7 +98,7 @@ class Main(QDialog):
         ### 각 레이아웃을 main_layout 레이아웃에 추가
         main_layout.addLayout(layout_equation_solution)
         main_layout.addLayout(layout_all)
-        
+
         self.setLayout(main_layout)
         self.show()
 
@@ -113,8 +115,8 @@ class Main(QDialog):
         equation += operation
         self.equation.setText(equation)
 
-    def button_operation1_clicked(self, operation):
-        equation = self.equation.text()
+    def button_operation1_clicked(self, operation):     # 이슈 #5번과 관련된 내용 ( 함수 )
+        equation = self.equation.text() 
         if operation == "1/x":
             number = float(equation)
             number = 1/number
