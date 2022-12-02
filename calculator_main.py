@@ -92,9 +92,9 @@ class Main(QDialog):
         button_dot.clicked.connect(lambda state, num = ".": self.number_button_clicked(num))
         layout_all.addWidget(button_dot, 5, 2)
 
-        button_double_zero = QPushButton("00")
-        button_double_zero.clicked.connect(lambda state, num = "00": self.number_button_clicked(num))
-        layout_all.addWidget(button_double_zero, 5, 0)
+        button_negative = QPushButton("+/-")
+        button_negative.clicked.connect(self.button_negative)
+        layout_all.addWidget(button_negative, 5, 0)
 
         ### 각 레이아웃을 main_layout 레이아웃에 추가
         main_layout.addLayout(layout_equation_solution)
@@ -154,7 +154,11 @@ class Main(QDialog):
             number = number ** (1/2)
             self.equation.setText(str(number))
 
-
+    def button_negative(self):
+        num2 = self.equation.text()
+        num2 = -1 * float(num2)
+        self.equation.setText(str(num2))
+    
     def button_equal_clicked(self):
         if self.test == '+':
             num2 = self.equation.text()
